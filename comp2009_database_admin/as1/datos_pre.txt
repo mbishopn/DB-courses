@@ -1,0 +1,106 @@
+insert into manufacturer (name,address,phone,acc_number)
+values
+("nissan","2605 Brookdale Ave, Cornwall, ON","(613)933-7555","111-654615-546"),
+("hyundai","2655 Brookdale Ave, Cornwall, ON","(613)937-3433","222-654615-546"),
+("honda","2660 Brookdale Ave, Cornwall, ON","+1 800-933-7555","333-654615-546"),
+("ford","744 Pitt St, Cornwall, ON","(613)932-2584","444-654615-546"),
+("volkswagen","632 Pitt St, Cornwall","(613)933-3483","555-654615-546");
+("dodge","2205 Vincent Massey Dr, Cornwall, ON","(613)938-0934","666-654615-546");
+("gm","2695 Brookdale Ave, Cornwall, ON","+1 855-933-3559","777-654615-546");
+("bmw group","1040 Ogilvie Rd, Gloucester, ON","(613)749-7700","888-654615-546");
+
+insert into brand (brand_name,quality,manufacturer)
+values
+("nissan","s",1),
+("nissan","sv",1),
+("nissan","sr",1),
+("mitsubishi","es",1),
+("mitsubishi","le",1),
+("mitsubishi","gt",1),
+("kia","lx",2),
+("kia","ex premium",2),
+("kia","gt limited",2),
+("vw","lx",2),
+("vw","ex premium",2),
+("vw","gt limited",2),
+("vw","lx",2),
+("vw","ex premium",2),
+("vw","gt limited",2),
+("audi","lx",2),
+("audi","ex premium",2),
+("audi","gt limited",2),
+
+
+
+////////////
+
+QUESTIONS TO TEACHER:
+ - can we add more tables to our db?
+ 	- transmission
+	- quality level
+ - when u say model, you mean de year? or the name like
+	vw jeta, tiguan
+	kia 
+
+ - quality some call it:
+ 	- trim
+	- line
+	- category
+   and levels could be:
+	comfortline, special edition, premium, highline
+	lx, ex, ex premium, gt
+	s, sv, sl, platinum
+
+ /// ----------------- CONSULTAS DE LA BASE DE DATOS
+
+-- Step 3 - Create Queries and Views
+CREATE VIEW big_cars AS
+SELECT 
+	b.brand_name,
+    m.model_id,
+    b.price_store,
+    b.seats
+FROM model m, brand b
+WHERE
+	m.brand = b.brand_name -- ?? debo usar esto si brand es texto y llave primaria de brand?
+							-- bien podria solo tomar todos los datos de model
+	AND
+    m.seats>5;
+
+CREATE VIEW hybrid_cars AS
+SELECT
+	model_id,
+    price_store
+FROM model
+WHERE
+	power_source = 'hybrid';
+    
+SELECT count(brand_name)
+FROM brand
+GROUP BY manufacturer;
+
+SELECT
+	model_name,
+    power_source,
+    brand,
+    m.name
+FROM
+	model, brand b, manufacturer m
+WHERE
+	model.brand=b.brand_name AND
+    b.manufacturer=m.code
+ORDER BY
+	m.name, b.brand_name, model_name;
+    
+CREATE VIEW cheap_cars AS
+SELECT
+	model_id,
+    price_suggested,
+	price_store
+FROM model
+WHERE price_store<35000;
+
+UPDATE model
+SET price_store = price_store*1.2
+WHERE
+	model_id IN (select model_id from cheap_cars);

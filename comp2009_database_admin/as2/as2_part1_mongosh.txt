@@ -1,0 +1,34 @@
+Tasks
+1. Create a database called A3_LastnameFirstname
+use A3_BishopNoriegaManuel
+
+2. Create a collection called "games"
+I could use db.createCollection() but since collections are created implicitly the first time they are referenced,
+I'm just going to use the command to add documents to collection "games" and that will create the collection.
+
+3. Add 3 to 5 games to the collection, meeting the specs 
+db.games.insertMany([
+{title:"quake2",genre:"fps",rating:89,
+reviews:[{date:"2001-01-01",rating:9.5,text:"nice game!..."}]} ,
+ {title:"quake3",genre:"fps",rating:95,
+reviews:[{date:"2003-01-01",rating:10,text:"the best game I've ever played!!!"},
+{date:"2003-01-01",rating:7,text:"meh!"}]},
+{title:"sim city 2000",genre:"strategy",rating:92,
+reviews:[{date:"2003-01-01",rating:9.3,text:"Amazing! I could spend the whole day developing my city!"},
+{date:"2003-01-01",rating:3,text:"Boooooooooooooooooooooring.... :\ "}]},
+ {title:"Genshin Impact",genre:"rpg",rating:97,
+reviews:[{date:"2003-01-01",rating:10,text:"well, my daugther loves it... so I gave it a try and got hooked :D"},
+{date:"2023-01-01",rating:8.7,text:"It's not bad, but there's room for improvement"}]}])
+finding by title
+
+4. Finds one of these games by title 
+db.games.find({title:"quake3"})
+
+5. Update the rating of 1 of these games based on it's title.
+db.games.updateOne({title:"quake3","reviews.rating":10},{$set:{"reviews.$.rating":9.5}})
+
+6. Find all games who's genre is Strategy
+db.games.find({genre:"strategy"})
+
+7. Find all games that have a rating above 70.
+db.games.find({"rating":{$gt:70}})

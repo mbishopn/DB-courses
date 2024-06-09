@@ -1,0 +1,74 @@
+{
+    "name":{
+        "firstName":"Manuel",
+        "lastName":"Bishop"
+    },
+    "registration_date": "2024-04-01 00:00:00",
+    "addresses":[
+        {
+            "addressId":0,
+            "streetName":"Street Name",
+            "streetNumber":"Street Number",
+            "city":"Cornwall",
+            "province":"Ontario",
+            "postalCode":"Postal Code"
+        },
+        {
+            "addressId":1,
+            "streetName":"Street Name",
+            "streetNumber":"Street Number",
+            "city":"City",
+            "province":"Province",
+            "postalCode":"Postal Code"
+        }
+    ],
+    "creditCards":[
+        {
+            "Default":true,
+            "cardNumber":"0000-0000-0000-0001",
+            "visaMC":"visa",
+            "expirationDate":"01-27",
+            "securityCode":"123"
+        },
+        {
+            "cardNumber":"0000-0000-0000-0002",
+            "visaMC":"mastercard",
+            "expirationDate":"05-25",
+            "securityCode":"123"
+        }
+    ],
+    "transactions":[
+        {
+            "id":"T00001",
+            "transactionDate":"2024-04-01 00:00:00",
+            "products":[
+                {
+                    "productID":"P0000",
+                    "title":"Title 1",
+                    "price":1000
+                },
+                {
+                    "productID":"P0001",
+                    "title":"Title 2",
+                    "price":1000
+                }
+            ]
+        },
+        {
+            "id":"T00002",
+            "transactionDate":"2024-04-01 00:00:00",
+            "products":[
+                {
+                    "productID":"P0020",
+                    "title":"Title 20",
+                    "price":1000
+                },
+                {
+                    "productID":"P0031",
+                    "title":"Title 31",
+                    "price":1000
+                }
+            ]
+        }
+    ]
+}
